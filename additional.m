@@ -5,4 +5,7 @@ function retval = additional(matr)
       retval(i,j) = matr(1,1) + matr(1,2)*W(1, i) + matr(2,1)*W(1, j) + matr(2,2)*W(1, i)*W(1, j);
     endfor
   endfor
+  tmp = retval(1,1);
+  retval(1,1) = retval(2,2);
+  retval(2,2) = tmp;
 endfunction
