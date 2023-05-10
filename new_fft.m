@@ -13,10 +13,10 @@ function ans = new_fft(n)
     ans = n;
     for i = 1:(size(n, 1) / 2)
       for j = 1:(size(n, 2) / 2)
-        ans(i, j) = first(i,j) + second(i,j)*W(log2(size(n,1)),i) + thirst(i,j)*W(log2(size(n,1)),j) + last(i,j)*W(log2(size(n,1)),i+j);
-        ans(i + size(n,1)/2, j) = first(i,j) - second(i,j)*W(log2(size(n,1)),i) + thirst(i,j)*W(log2(size(n,1)),j) - last(i,j)*W(log2(size(n,1)),i+j);
-        ans(i, j + size(n,1)/2) = first(i,j) - second(i,j)*W(log2(size(n,1)),i) - thirst(i,j)*W(log2(size(n,1)),j) - last(i,j)*W(log2(size(n,1)),i+j);
-        ans(i + size(n,1)/2, j + size(n,1)/2) = first(i,j) - second(i,j)*W(log2(size(n,1)),i) - thirst(i,j)*W(log2(size(n,1)),j) + last(i,j)*W(log2(size(n,1)),i+j);
+        ans(i, j) = value_first(i,j) + value_second(i,j)*W(log2(size(n,1)),i) + value_thirst(i,j)*W(log2(size(n,1)),j) + value_last(i,j)*W(log2(size(n,1)),i+j);
+        ans(i + size(n,1)/2, j) = value_first(i,j) - value_second(i,j)*W(log2(size(n,1)),i) + value_thirst(i,j)*W(log2(size(n,1)),j) - value_last(i,j)*W(log2(size(n,1)),i+j);
+        ans(i, j + size(n,1)/2) = value_first(i,j) - value_second(i,j)*W(log2(size(n,1)),i) - value_thirst(i,j)*W(log2(size(n,1)),j) - value_last(i,j)*W(log2(size(n,1)),i+j);
+        ans(i + size(n,1)/2, j + size(n,1)/2) = value_first(i,j) - value_second(i,j)*W(log2(size(n,1)),i) - value_thirst(i,j)*W(log2(size(n,1)),j) + value_last(i,j)*W(size(n,1),i+j);
       endfor
     endfor
   end
