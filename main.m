@@ -40,7 +40,30 @@ elseif (number == 2)
       endif
     endif
 elseif (number == 3)
-
+  norm = true;
+  file = input('Введите путь и название файла: ', 's');
+  try
+    A = csvread(file)
+  catch exception
+    disp('Ошибка при прочтении файла');
+  end
+  if (log2(size(A,1)) != fix(log2(size(A,1))) || log2(size(A,2)) != fix(log2(size(A,2))))
+      disp('Неподходящий размер массива');
+      norm = false;
+    endif
+    if (size(A,1) != size(A,2))
+      if (size(A,2) / size(A,1) != 2 && size(A,1) / size(A,2) != 2)
+        disp('Неподходящий размер массива');
+        norm = false;
+      endif
+    endif
+    if (norm)
+      if (size(A,1) == size(A,2))
+        B = fft2(A)
+      else
+        B = square(A)
+      endif
+    endif
 else
 
 end
