@@ -1,7 +1,7 @@
 clear; clc;
 disp('Выберите нужный вариант:');
 disp('1. Сжатие фотографии');
-disp('2. Размер рандомного массива');
+disp('2. Генерация рандомного массива');
 disp('3. Экспорт массива из .csv файла');
 disp('4. Ввод массива вручную');
 number = input('Введите число: ');
@@ -65,5 +65,31 @@ elseif (number == 3)
       endif
     endif
 else
-
-end
+    norm = true;
+    n1 = input('Введите количество строк массива: ');
+    n2 = input('Введите количество столбцов массива: ');
+    if (log2(n1) != fix(log2(n1)) || log2(n2) != fix(log2(n2)))
+      disp('Неподходящий размер массива');
+      norm = false;
+    endif
+    if (n1 != n2)
+      if (n2 / n1 != 2 && n1 / n2 != 2)
+        disp('Неподходящий размер массива');
+        norm = false;
+      endif
+    endif
+    if (norm)
+      A = zeros(n1, n2);
+      for i=1:n1
+        for j=1:n2
+          prompt = sprintf('Введите элемент [%d, %d]: ', i, j);
+          A(i, j) = input(prompt);
+        endfor
+      endfor
+      if (n1 == n2)
+        B = fft2(A)
+      else
+        B = square(A)
+      endif
+   endif
+endif
